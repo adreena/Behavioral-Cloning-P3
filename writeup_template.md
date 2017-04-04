@@ -1,20 +1,17 @@
 #**Behavioral Cloning** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Behavioral Cloning Project**
-
 The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
-* Build, a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model with a training and validation set
-* Test that the model successfully drives around track one without leaving the road
-* Summarize the results with a written report
 
+* Step 1: collecting trainig/validation data from driving simulator
+* Step 2: data augmentation using left/right/flipped images and correcting steering angle 
+* Step 3: using generators to iterate through the data on the fly instead of storing them in memory.
+* Step 4: preprocessing data 
+* Step 4: implementing NVIDIA architecture model to train the model
+* Step 4: optimizing model with AdamOptimizer to minimize mean squared error
+* Step 5: evaluating the model based on validation set
+* Step 8: visualizing error loss of training and validation data to monitor over-fitting/under-fitting situations
+* Step 6: saving the model and feeding it to drive.py to drive simulator in autonomous mode
+* goal : achieving a high accuracy regression model to drive car simulator autonomously 
 
 [//]: # (Image References)
 
@@ -32,15 +29,20 @@ The goals / steps of this project are the following:
 ---
 ###Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+####1. Required files to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
+* solution.ipynb notebook file of the experiment
 * writeup_report.md or writeup_report.pdf summarizing the results
 
-####2. Submission includes functional code
+Extra experiment:
+* Ran the model on 70,000 data of both tracks in a separate model (same architecture) to test how it performs on the 2nd track
+* As this amount of data doesn't fit in EC2 instance, I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model significantly becuase of reading them from s3 bucket.
+
+####2. Functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
@@ -48,15 +50,28 @@ python drive.py model.h5
 
 ####3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network. 
 
 ###Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+####1. Data Collection & Augmentation
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+Training data for keeping the vehicle driving on the road are combination of these main categories: 
+  * driving 3,4 laps in the center of road on track #1 (both driving clockwise and counter-clockwise)
+  * recovery laps consisting of data from car just returning to the center of the lanes 
+  * for each row of data in driving_log.csv , left and right image are also considered as a training data point with +/-0.2 steering angle correction
+  * center image is also flipped with angle correction : -1x(steering-angle) of center image
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+####2. Model architecture
+
+This model consists of 7 convolution neural network layers followed by 4 flat layers (including output layer)
+Collected data (32144) is splitted into training data/ validation data by 20%, the data is normalized through a Lambda layer to fit in range [-0.5,0.5] before feeding into the first convoluitonal layer.
+Images are then cropped from top(70px) and bottom(25px) because these areas don't contain important information for trainign the model, it also helps reduce image size and network complexity.
+Conv Layer 1: applies 5x5 filter with filter-depth=24, it's subsampled (maxpool) and activated with a RELU layer to introduce nonlinearity.
+Conv Layers 2,3,4 & 5 follow simillar pattern to layer 1 but with deeper fitler size : 36, 48 , 64 & 64
+Flat Layer: outputs should be reshaped to flat as they are feeding a fully connected layer
+Dense Layer 1,2,3: fully connected layer consist of 100 & 50 & 10 nodes
+Model uses Adam optimizer with 5 epochs and batch_size 32
 
 ####2. Attempts to reduce overfitting in the model
 
@@ -66,13 +81,8 @@ The model was trained and validated on different data sets to ensure that the mo
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually.
 
-####4. Appropriate training data
-
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
-
-For details about how I created the training data, see the next section. 
 
 ###Model Architecture and Training Strategy
 
