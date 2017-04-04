@@ -1,4 +1,4 @@
-#**Behavioral Cloning** 
+# **Behavioral Cloning** 
 
 The goals / steps of this project are the following:
 
@@ -23,13 +23,9 @@ The goals / steps of this project are the following:
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Files Submitted & Code Quality
 
----
-###Files Submitted & Code Quality
-
-####1. Required files to run the simulator in autonomous mode
+#### 1. Required files to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -42,19 +38,19 @@ Extra experiment:
 * Ran the model on 70,000 data of both tracks in a separate model (same architecture) to test how it performs on the 2nd track
 * As this amount of data doesn't fit in EC2 instance, I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model significantly becuase of reading them from s3 bucket.
 
-####2. Functional code
+#### 2. Functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Data Collection & Augmentation
+#### 1. Data Collection & Augmentation
 
 Training data for keeping the vehicle driving on the road are combination of these main categories: 
   * driving 3,4 laps in the center of road on track #1 (both driving clockwise and counter-clockwise)
@@ -62,7 +58,7 @@ Training data for keeping the vehicle driving on the road are combination of the
   * for each row of data in driving_log.csv , left and right image are also considered as a training data point with +/-0.2 steering angle correction
   * center image is also flipped with angle correction : -1x(steering-angle) of center image
 
-####2. Model architecture
+#### 2. Model architecture
 
 This model consists of 7 convolution neural network layers followed by 4 flat layers (including output layer)
 Collected data (32144) is splitted into training data/ validation data by 20%, the data is normalized through a Lambda layer to fit in range [-0.5,0.5] before feeding into the first convoluitonal layer.
@@ -73,20 +69,20 @@ Flat Layer: outputs should be reshaped to flat as they are feeding a fully conne
 Dense Layer 1,2,3: fully connected layer consist of 100 & 50 & 10 nodes
 Model uses Adam optimizer with 5 epochs and batch_size 32
 
-####2. Attempts to reduce overfitting in the model
+#### 3. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 4. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to ...
 
@@ -102,7 +98,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
 
@@ -110,7 +106,7 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 ![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
