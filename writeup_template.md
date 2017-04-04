@@ -73,25 +73,25 @@ Model uses Adam optimizer with 5 epochs and batch_size 32
 
 #### 3. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model contains dropout layers in order to reduce overfitting and it's trained and validated on different data sets to ensure that the model was not overfitting. I tested my model by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 4. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
 
-
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
 
-I started training my model using NVIDIDA architecture without dropout layers on the data that I collected from track 1, incorporating left/right images with +/-0.2 correction and flipped image with opposite steering angle helped car to stay almost in the center for the total of ~20k data. But my model needed more tuning for the road-turns as well as the sections of road with no lanes on the sides, such as :
+I started training my model using NVIDIDA architecture without dropout layers on the data that I collected from track #1, incorporating left/right images with +/-0.2 correction and flipped image with opposite steering angle helped car to stay almost in the center for the total of ~20k data. But my model needed more tuning for the road-turns as well as the sections of road with no lanes on the sides, such as :
+
 [IMAGE]
 
-As suggested in project description, I added recovery laps to my data-set by recording how car should return to the center and adjust steering angels and my model managed to stay in the center even in all turns.
+As suggested in project description, I added recovery laps to my data-set (increased sized to ~30k) by recording how car should return to the center and adjust steering angels and my model managed to stay in the center even in all turns.
 Here is the MSE loss of the model without dropout layers:
+
 [IMAGE]
+
 
 I noticed an interesting behavior on frame-capturing timing and how network can be challenged on higher speeds! As speed increases simulator has less time to capture frames and model prediction should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the center.
 
@@ -100,7 +100,7 @@ So I increased the speed of the car in drive.py from 9 to 20 and model was not d
 
 Adding dropout 50% in between all my fully connected layers to generalize model and the loss dropped very much and model performed a lot better with higher speed.
 
-After getting satisfactory results on my 1st model, I started training my 2nd model on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on my stronger model(model2.h5) comparing it to my smaller model (model1.h5) especially in higher speed mode.
+After getting satisfactory results on my 1st model, I started training my 2nd model on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on my stronger model (model2.h5) comparing it to my smaller model (model1.h5) especially in higher speed mode.
 
 As this amount of data doesn't fit in an EC2 instance, I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model significantly becuase of reading each image from s3 bucket.
 
