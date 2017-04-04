@@ -27,7 +27,7 @@ My project includes the following files:
 * Ran the model on 70,000 data of both tracks in a separate model (same architecture) to test how it performs on the 2nd track
 * As this amount of data doesn't fit in an EC2 instance, I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model significantly becuase of reading each image from s3 bucket.
 * Using jupyter was a bad mistake it filled up all of my server's memory and couldn't resolve it, so I ended up just running a python script rather than keeping it in jupyter notebook
-* I also tried modifying speed of car in drive.py from 9 to 20 mph, I noticed an interesting behavior on frame capturing timing and how network can be challenged on higher speeds! As speed increases simulator has less time to capture frames and model prediction should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the center. And I noticed massive improvement from my smaller model (model1.h5) to my stronger model (model2.h5) with higher speed. 
+* I also tried modifying speed of car in drive.py from 9 to 20 mph, I noticed an interesting behavior on frame capturing timing and how network can be challenged on higher speeds! As speed increases simulator has less time to capture frames and model prediction should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the center. And I noticed massive improvement on my stronger model(model2.h5) comparing it to my smaller model (model1.h5) in higher speed mode. 
 
 #### 2. Functional code
 
