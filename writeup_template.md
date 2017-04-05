@@ -78,9 +78,9 @@ Data camera sample:
     <th>Right</th>
   </tr>
   <tr>
-    <td><img src="./examples/center.jpg" width="250" height="250"/></td>
-    <td><img src="./examples/left.jpg" width="250" height="250"/></td>
-    <td><img src="./examples/right.jpg" width="250" height="250"/></td>
+    <td><img src="./examples/center.jpg" width="250" height="200"/></td>
+    <td><img src="./examples/left.jpg" width="250" height="200"/></td>
+    <td><img src="./examples/right.jpg" width="250" height="200"/></td>
   </tr>
 </table>
 
@@ -92,8 +92,8 @@ Cropping top & bottom image by 70px & 25px:
     <th>Cropped</th>
   </tr>
   <tr>
-    <td><img src="./examples/center.jpg" width="250" height="250"/></td>
-    <td><img src="./examples/cropped.jpg" width="250" height="250"/></td>
+    <td><img src="./examples/center.jpg" width="250" height="200"/></td>
+    <td><img src="./examples/cropped.jpg" width="250" height="150"/></td>
   </tr>
 </table>
 
