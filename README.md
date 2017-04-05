@@ -120,7 +120,7 @@ Here is the MSE loss of the model without dropout layers:
 
 I noticed an interesting behavior on `frame-capture` timing and how network can be challenged on higher `speeds`! As speed increases simulator has less time to capture frames and model should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the middle.
 
-So I increased the speed of the car in drive.py from `9mph to 20mph` and model was not doing very well, it was constantly changing steering angels to saty on track. I interpreted this behavior as my model wasn't predicting accurate enough and that's causing the car to get far off left/right in between camera captures. I then added dropout layers and here is the MSE loss of my 1st model after adding dropouts:
+So I increased the speed of the car in drive.py from `9mph to 20mph` and model was not doing very well, it was constantly changing steering angels to stay on track. I interpreted this behavior as my model wasn't predicting accurate enough and that's causing the car to get far off left/right in between camera captures. I then added dropout layers and here is the MSE loss of my 1st model after adding dropouts:
 
 <img src="./driving-data/loss.png" width="400" height="280" align="middle" hspace="20"/>
 
