@@ -73,9 +73,7 @@ The model contains `dropout layers` 50% in order to reduce overfitting and it's 
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
 
-### Model Architecture and Training Strategy
-
-#### Solution Design Approach
+#### 5. Solution Design Approach
 
 I started training my model using NVIDIA architecture without dropout layers with the data that I collected from track #1, incorporating left/right images with +/-0.2 correction and flipped-image with opposite steering angle helped car to stay almost in the center of lanes for the total of ~20k data. But my model needed more tuning for the road-turns as well as the sections of road with no lanes on the sides, such as :
 
@@ -99,7 +97,7 @@ As this amount of data didn't fit in an EC2 instance, I uploaded them to a S3 bu
 
 Using jupyter was a bad mistake, it filled up all of my server's memory and couldn't resolve it, so I ended up just running a python script rather than keeping it in jupyter notebook.
 
-#### Recorded video
+#### 6. Recorded video
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
