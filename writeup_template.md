@@ -21,13 +21,14 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * models/ containing 2 models, model1.h5 is only trained on track1 with 30,000 data, model2.h5 is trained on 70,000 data track 1 & track 2
-* writeup_report.md or writeup_report.pdf summarizing the results
+* writeup_report.md summary of the results
 
 #### 2. Functional code
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
-python drive.py model.h5
+python drive.py models/model1.h5
+python drive.py models/model2.h5
 ```
 
 #### 3. Code is usable and readable
