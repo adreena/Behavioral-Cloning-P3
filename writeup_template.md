@@ -64,7 +64,7 @@ This model consists of 7 convolution neural network layers followed by 4 flat la
 * Flat Layer: outputs should be reshaped to flat as they are feeding a fully connected layer
 * Dense Layer 1,2,3: fully connected layer consist of `100` & `50` & `10` nodes
 
-<img src="./examples/3.png" width="600" height="280"/>
+<img src="./examples/3.png" width="600" height="280" style="padding:50px;"/>
 
 Model uses `Adam optimizer` with `5 epochs` and `batch_size:32`
 
@@ -80,12 +80,12 @@ The model used an adam optimizer, so the learning rate was not tuned manually.
 
 I started training my model using NVIDIA architecture without dropout layers with the data that I collected from track #1, incorporating left/right images with +/-0.2 correction and flipped-image with opposite steering angle helped car to stay almost in the center of lanes for the total of ~20k data. But my model needed more tuning for the road-turns as well as the sections of road with no lanes on the sides, such as :
 
-    <img src="./examples/1.png" width="500" height="280"/>
+  <img src="./examples/1.png" width="500" height="280"/>
 
 As suggested in project description, I added recovery laps to my data-set (increased sized to ~30k) by recording how car should return to the center and adjust steering angels and my model managed to stay in the center even in all turns.
 Here is the MSE loss of the model without dropout layers:
 
-    <img src="./examples/2.png" width="400" height="280"/>
+  <img src="./examples/2.png" width="400" height="280"/>
 
 I noticed an interesting behavior on `frame-capture` timing and how network can be challenged on higher `speeds`! As speed increases simulator has less time to capture frames and model should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the middle.
 
