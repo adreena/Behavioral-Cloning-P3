@@ -70,11 +70,32 @@ NVIDIA network:
 
 Model uses `Adam optimizer` with `5 epochs` and `batch_size:32`
 
-Data sample:
-
+Data camera sample:
+<table style="width:100%">
+  <tr>
+    <th>Center</th>
+    <th>Left</th>
+    <th>Right</th>
+  </tr>
+  <tr>
+    <td><img src="./examples/center.jpg" width="250" height="250"/></td>
+    <td><img src="./examples/left.jpg" width="250" height="250"/></td>
+    <td><img src="./examples/right.jpg" width="250" height="250"/></td>
+  </tr>
+</table>
 
 Cropping top & bottom image by 70px & 25px:
 
+<table style="width:100%">
+  <tr>
+    <th>Original</th>
+    <th>Cropped</th>
+  </tr>
+  <tr>
+    <td><img src="./examples/center.jpg" width="250" height="250"/></td>
+    <td><img src="./examples/cropped.jpg" width="250" height="250"/></td>
+  </tr>
+</table>
 
 
 #### 3. Attempts to reduce overfitting in the model
