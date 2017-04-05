@@ -58,7 +58,7 @@ For the 2nd model I also added track #2 to the dataset and increased the data to
 
 This model consists of 7 convolution neural network layers followed by 4 flat layers (including output layer)
 
-* Collected data (sizes: model1 (32k), model2 (71k)) is splitted into training data/ validation data by `20%`, the data is normalized through a Lambda layer to fit in range [-0.5,0.5] before feeding into the first convoluitonal layer.
+* Collected data (sizes: model1 (32k), model2 (71k)) is splitted into training data/ validation data by `20%`, the data is normalized through a Lambda layer to fit in range [-0.5,0.5] and shuffled before feeding into the first convoluitonal layer.
 * Images are then cropped from `top(70px)` and `bottom(25px)` because these areas don't contain important information for training the model, it also helps reduce image size and network complexity.
 * Conv Layer 1: applies `5x5` filter with `filter-depth=24`, it's subsampled (maxpool) and activated with a `RELU layer` to introduce nonlinearity.
 * Conv Layers 2,3,4 & 5 follow simillar pattern to layer 1 but with deeper fitler size : `36`, `48` , `64` & `64`
