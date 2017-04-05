@@ -97,7 +97,7 @@ Adding dropout 50% in between all my fully connected layers to generalize model 
 
 After getting good results on my 1st model, I started training my `2nd model` on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on this model (model2.h5) comparing it to my smaller model (model1.h5) especially in high-speed mode. MSE loss for model2:
 
-<img src="./driving-data/loss.png" width="400" height="280" align="middle" hspace="20"/>
+<img src="./driving-data2/loss.png" width="400" height="280" align="middle" hspace="20"/>
 
 This huge amount of data didn't fit in an EC2 instance, so I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model training-time significantly becuase of reading each image from s3 bucket.
 
