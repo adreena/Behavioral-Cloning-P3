@@ -64,9 +64,18 @@ This model consists of 7 convolution neural network layers followed by 4 flat la
 * Flat Layer: outputs should be reshaped to flat as they are feeding a fully connected layer
 * Dense Layer 1,2,3: fully connected layer consist of `100` & `50` & `10` nodes
 
+NVIDIA network:
+
 <img src="./examples/3.png" width="600" height="280" align="middle" hspace="20"/>
 
 Model uses `Adam optimizer` with `5 epochs` and `batch_size:32`
+
+Data sample:
+
+
+Cropping top & bottom image by 70px & 25px:
+
+
 
 #### 3. Attempts to reduce overfitting in the model
 
