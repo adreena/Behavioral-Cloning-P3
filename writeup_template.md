@@ -138,7 +138,7 @@ Using jupyter was a bad mistake, it filled up all of my server's memory and coul
 I first recorded autonomous driving track #1 one using my first `model1.h5` as `run1.mp4` and 1 lap on track #2 using my 2nd model `model2.h5` as `run2.mp4`.
 
 <video width="480" height="320" controls="controls">
-<source src="run1.mp4" type="video/mp4">
+<source src="./run1.mp4" type="video/mp4">
 </video>
 
 #### 7. Future works
