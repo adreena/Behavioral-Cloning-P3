@@ -137,6 +137,10 @@ Using jupyter was a bad mistake, it filled up all of my server's memory and coul
 
 I first recorded autonomous driving track #1 one using my first `model1.h5` as `run1.mp4` and 1 lap on track #2 using my 2nd model `model2.h5` as `run2.mp4`.
 
+<video width="480" height="320" controls="controls">
+<source src="run1.mp4" type="video/mp4">
+</video>
+
 #### 7. Future works
 
 Memory restriction is a huge problem on a long term training and I'd like to know more options other than s3 bucket. Also, I'm interested to know how we can incorporate speed into the model and combine steering angle with speed.
