@@ -90,11 +90,13 @@ Here is the MSE loss of the model without dropout layers:
 I noticed an interesting behavior on `frame-capture` timing and how network can be challenged on higher `speeds`! As speed increases simulator has less time to capture frames and model should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the middle.
 
 So I increased the speed of the car in drive.py from `9mph to 20mph` and model was not doing very well, it was constantly changing steering angels to saty on track. I interpreted this behavior as my model wasn't predicting accurate enough and that's causing the car to get far off left/right in between camera captures. I then added dropout layers and here is the MSE loss of my 1st model after adding dropouts:
-[IMAGE]
+<img src="./diriving-data/loss.png" width="400" height="280" align="middle" hspace="20"/>
 
 Adding dropout 50% in between all my fully connected layers to generalize model and the loss dropped very much, model performed a lot better with higher engine speed (20mph).
 
-After getting good results on my 1st model, I started training my `2nd model` on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on this model (model2.h5) comparing it to my smaller model (model1.h5) especially in high-speed mode.
+After getting good results on my 1st model, I started training my `2nd model` on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on this model (model2.h5) comparing it to my smaller model (model1.h5) especially in high-speed mode. MSE loss for model2:
+
+<img src="./diriving-data2/loss.png" width="400" height="280" align="middle" hspace="20"/>
 
 This huge amount of data didn't fit in an EC2 instance, so I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model training-time significantly becuase of reading each image from s3 bucket.
 
@@ -102,7 +104,7 @@ Using jupyter was a bad mistake, it filled up all of my server's memory and coul
 
 #### 6. Recorded video
 
-I first recorded two laps on track #1 one using my first `model1.h5` and 1 lap on track #2 using my 2nd model `model2.h5`.
+I first recorded autonomous driving track #1 one using my first `model1.h5` as `run1.mp4` and 1 lap on track #2 using my 2nd model `model2.h5` as `run2.mp4`.
 
 #### 7. Future works
 
