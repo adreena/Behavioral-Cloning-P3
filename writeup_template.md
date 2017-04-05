@@ -22,6 +22,7 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * models/ containing 2 models, model1.h5 is only trained on track1 with 30,000 data, model2.h5 is trained on 70,000 data track 1 & track 2
 * writeup_report.md summary of the results
+* run1.mp4 of running model1 on track#1 and run2.mp4 of running model2 on track#2
 
 #### 2. Functional code
 
@@ -79,8 +80,8 @@ Data camera sample:
   </tr>
   <tr>
     <td><img src="./examples/center.jpg" width="250" height="200"/></td>
-    <td><img src="./examples/left.jpg" width="250" height="200"/></td>
-    <td><img src="./examples/right.jpg" width="250" height="200"/></td>
+    <td><img src="./examples/left.jpg" width="200" height="200"/></td>
+    <td><img src="./examples/right.jpg" width="200" height="200"/></td>
   </tr>
 </table>
 
@@ -92,8 +93,8 @@ Cropping top & bottom image by 70px & 25px:
     <th>Cropped</th>
   </tr>
   <tr>
-    <td><img src="./examples/center.jpg" width="250" height="200"/></td>
-    <td><img src="./examples/cropped.jpg" width="250" height="150"/></td>
+    <td><img src="./examples/center.jpg" width="200" height="200"/></td>
+    <td><img src="./examples/cropped.jpg" width="200" height="100"/></td>
   </tr>
 </table>
 
@@ -136,10 +137,6 @@ Using jupyter was a bad mistake, it filled up all of my server's memory and coul
 #### 6. Recorded video
 
 I first recorded autonomous driving track #1 one using my first `model1.h5` as `run1.mp4` and 1 lap on track #2 using my 2nd model `model2.h5` as `run2.mp4`.
-
-<video width="480" height="320" controls="controls">
-<source src="./run1.mp4" type="video/mp4">
-</video>
 
 #### 7. Future works
 
