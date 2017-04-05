@@ -85,20 +85,24 @@ Here is the MSE loss of the model without dropout layers:
 
 [IMAGE]
 
-I noticed an interesting behavior on frame-capturing timing and how network can be challenged on higher `speeds`! As speed increases simulator has less time to capture frames and model prediction should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the middle.
+I noticed an interesting behavior on `frame-capture` timing and how network can be challenged on higher `speeds`! As speed increases simulator has less time to capture frames and model should be very accurate at the time of prediction otherwise car keeps going far left or right instead of keeping it in the middle.
 
-So I increased the speed of the car in drive.py from `9mph to 20mph` and model was not doing very well as it was constantly changing steering angels to saty on track. I interpreted this behavior as my model wasn't predicting accuracte enough which causes the car to get far off left/right in between camera captures. I then added dropout layers and here is the MSE loss of my 1st model after adding dropouts:
+So I increased the speed of the car in drive.py from `9mph to 20mph` and model was not doing very well, it was constantly changing steering angels to saty on track. I interpreted this behavior as my model wasn't predicting accurate enough and that's causing the car to get far off left/right in between camera captures. I then added dropout layers and here is the MSE loss of my 1st model after adding dropouts:
 [IMAGE]
 
 Adding dropout 50% in between all my fully connected layers to generalize model and the loss dropped very much, model performed a lot better with higher engine speed (20mph).
 
-After getting satisfactory results on my 1st model, I started training my `2nd model` on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on my stronger model (model2.h5) comparing it to my smaller model (model1.h5) especially in high-speed mode.
+After getting good results on my 1st model, I started training my `2nd model` on ~70k data of both tracks (same architecture as my 1st model) to test how it performs on the 2nd track. I noticed massive improvement on this model (model2.h5) comparing it to my smaller model (model1.h5) especially in high-speed mode.
 
-As this amount of data didn't fit in an EC2 instance, I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model training-time significantly becuase of reading each image from s3 bucket.
+This huge amount of data didn't fit in an EC2 instance, so I uploaded them to a S3 bucket to eliminate memory restriction. Although it enabled me to train the model with more data, it slowed down my model training-time significantly becuase of reading each image from s3 bucket.
 
 Using jupyter was a bad mistake, it filled up all of my server's memory and couldn't resolve it, so I ended up just running a python script rather than keeping it in jupyter notebook.
 
 #### 6. Recorded video
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+I first recorded two laps on track #1 one using my first model1.h5 and 1 lap on track #2 using my 2nd model model2.h5.
+
+#### 7. Future works
+
+Memory restriction is a huge problem on a long term training and I'd like to know more options other than s3 bucket. Also, I'm interested to know how we can incorporate speed into the model and combine steering angle with speed.
 
